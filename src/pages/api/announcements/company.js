@@ -1,5 +1,5 @@
-import connectMongoDB from "@/libs/db";
-import Companies from "@/model/companies";
+import connectMongoDB from "../../../libs/db";
+import Companies from "../../../model/companies";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     const { scripId, startDate, endDate, critical, recentAnnouncments } =
       req.query;
     const queryObject = {};
-
+    
     try {
       if (scripId) {
         queryObject.SCRIP_CD = scripId.split(",");
@@ -22,12 +22,23 @@ export default async function handler(req, res) {
           startDate.setDate(currentDate.getDate() - 2);
           const start = startDate.toISOString();
           queryObject.NEWS_DT = { $gte: start, $lte: end };
-          console.log(end, start);
+          // console.log(end, start);
         } else {
           const start = new Date(startDate).toISOString();
           const end = new Date(endDate).toISOString();
           queryObject.NEWS_DT = { $gte: start, $lte: end };
         }
+      }
+
+      if (recentAnnouncments) {
+        // const currentDate = new Date("2023-07-22"); use this for demonstration
+        const currentDate = new Date();
+        const end = currentDate.toISOString();
+        const startDate = new Date(); //current Date
+        startDate.setDate(currentDate.getDate() - 2);
+        const start = startDate.toISOString();
+        queryObject.NEWS_DT = { $gte: start, $lte: end };
+        console.log(end, start);
       }
 
       if (critical) {
@@ -47,13 +58,15 @@ export default async function handler(req, res) {
         });
         // res.status(200).json({ nhBits: companies.length, companies });
       }
-
+      
       const page = Number(req.query.page) || 1;
-      const limit = Number(req.query.limit) || 5;
+      const limit = Number(req.query.limit) || 10;
       const skip = (page - 1) * limit;
 
       result = result.skip(skip).limit(limit);
+
       const companies = await result;
+
       res.status(200).json({ nhBits: companies.length, companies });
 
       //catch error
