@@ -28,4 +28,4 @@ The problem is to create a backend solution using Next.js/Node.js and MongoDB to
 
 
 ## Demo Link
-[https://stockinsights-pi.vercel.app/api/announcements/company]
+https://stockinsights-pi.vercel.app/api/announcements/company
