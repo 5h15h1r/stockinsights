@@ -19,13 +19,21 @@ The problem is to create a backend solution using Next.js/Node.js and MongoDB to
    - API to find all the critical announcements or critical announcements of a list of companies over a given period.
    - API to retrieve announcements from the past 1-2 days in descending time order.
 
-| Endpoints                        | Request Type |                          Query parameters                          |
-| -------------------------------- | :----------: | :----------------------------------------------------------------: |
-| /api/announcements/company       |     GET      |                           scripId                                  |
-| /api/announcements/company       |     GET      |                           startDate,endDate                        |
-| /api/announcements/company       |     GET      |                           critical                                 |
-| /api/announcements/company       |     GET      |                       recentAnnouncments                           |
+# Solution
+## Project Design
+![Design](images/design.png)
 
+| Endpoints                        | Request Type |    Query parameters    |    Description                            | 
+| -------------------------------- | :----------: | :--------------------: | :---------------------------------------: | 
+| /api/announcements/company       |     GET      |    scripId             |         id of the company                 |
+| /api/announcements/company       |     GET      |    startDate,endDate   |   startDate and endDate of announcements  |
+| /api/announcements/company       |     GET      |    critical            |    Flag - 1 if the announcement is critical, else 0|
+| /api/announcements/company       |     GET      |    recentAnnouncments  |   takes either True or False as params and returns announcements from last 2 days |
+| /api/announcements/company       |     GET      |    page                |    page numbers (pagination                 |
+
+> Added pagination to the response of the API.
+
+> If we pass recentAnnouncments with start date & end date then the api only shows announcements from past 2 days  
 
 ## Demo Link
 https://stockinsights-pi.vercel.app/api/announcements/company
