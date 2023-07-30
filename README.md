@@ -1,4 +1,4 @@
-# Project Documentation: Announcement API
+# Project Documentation: Announcement API 
 
 ## Problem Statement
 
@@ -25,3 +25,7 @@ The problem is to create a backend solution using Next.js/Node.js and MongoDB to
 | /api/announcements/company       |     GET      |                           startDate,endDate                        |
 | /api/announcements/company       |     GET      |                           critical                                 |
 | /api/announcements/company       |     GET      |                       recentAnnouncments                           |
+
+
+## Demo Link
+[https://stockinsights-pi.vercel.app/api/announcements/company]
