@@ -22,6 +22,6 @@ The problem is to create a backend solution using Next.js/Node.js and MongoDB to
 | Endpoints                        | Request Type |                          Query parameters                          |
 | -------------------------------- | :----------: | :----------------------------------------------------------------: |
 | /api/announcements/company       |     GET      |                           scripId                                  |
-| /api/v1/token                    |     POST     |                           startDate,endDate                        |
-| /api/v1/token/refresh            |     POST     |                           critical                                 |
-| /api/v1/hackathons               |     GET      |                       recentAnnouncments                           |
+| /api/announcements/company       |     GET      |                           startDate,endDate                        |
+| /api/announcements/company       |     GET      |                           critical                                 |
+| /api/announcements/company       |     GET      |                       recentAnnouncments                           |
