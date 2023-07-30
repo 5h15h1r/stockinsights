@@ -1,38 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Documentation: Announcement API
 
-## Getting Started
+## Problem Statement
 
-First, run the development server:
+Public companies in India are required to regularly update the stock exchanges (e.g., BSE/NSE) about any corporate events that have a high impact on their business or shareholders. These events can include new contracts, changes in management, and other significant developments. As an investor, it's crucial to stay informed about these announcements for the stocks you are interested in.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The problem is to create a backend solution using Next.js/Node.js and MongoDB to handle user requirements related to announcements data. We need to read data from a JSON file containing announcements data and persist it in MongoDB. Then, we should implement various API endpoints to retrieve and manipulate the announcements data.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Requirements
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+1. Data Processing:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+   - Read data from a given JSON file containing announcements data.
+   - Connect to MongoDB and persist the announcements data into the database.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2. API Design and Implementation:
+   - API to find announcements of a company (SCRIP_CD) or multiple companies.
+   - API to find announcements over a specified period (start & end dates) or announcements of a company/group of companies over a period.
+   - API to find all the critical announcements or critical announcements of a list of companies over a given period.
+   - API to retrieve announcements from the past 1-2 days in descending time order.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+| Endpoints                        | Request Type |                          Query parameters                          |
+| -------------------------------- | :----------: | :----------------------------------------------------------------: |
+| /api/announcements/company       |     GET      |                           scripId                                  |
+| /api/v1/token                    |     POST     |                           startDate,endDate                        |
+| /api/v1/token/refresh            |     POST     |                           critical                                 |
+| /api/v1/hackathons               |     GET      |                       recentAnnouncments                           |
